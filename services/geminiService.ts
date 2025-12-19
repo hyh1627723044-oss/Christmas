@@ -2,14 +2,21 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { ShapeType, ChristmasBlessing } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+// Always use the specified initialization format with named parameters.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const generateBlessing = async (shape: ShapeType): Promise<ChristmasBlessing> => {
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
-      contents: `Generate a short, cozy, and poetic Christmas blessing in Chinese based on the shape: ${shape}. 
-      The blessing should be warm and feel like a holiday gift.
+      contents: `Generate a short, cool, and poetic Christmas blessing in Chinese based on the shape: ${shape}. 
+      Context:
+      - TREE: Traditional Christmas.
+      - DIAMOND: "African Heart" (非洲之心), the ultimate grand prize from Delta Force game. Represents rarity and success.
+      - MAGAZINE: "Commemorative Magazine" (纪念杂志), a prize from Delta Force. Represents memory and journey.
+      - BELL: Christmas Bell, represents good news and joy.
+      - FIREWORK: Celebration and bright future.
+      The blessing should be high-end and feel like a holiday gift.
       Format the output as JSON.`,
       config: {
         responseMimeType: "application/json",
@@ -24,6 +31,7 @@ export const generateBlessing = async (shape: ShapeType): Promise<ChristmasBless
       }
     });
 
+    // Access the .text property directly (do not call as a method).
     const data = JSON.parse(response.text || '{}');
     return {
       shape,

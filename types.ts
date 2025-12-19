@@ -1,12 +1,10 @@
 
 export enum ShapeType {
   TREE = 'TREE',
-  STAR = 'STAR',
-  FIREWORK = 'FIREWORK',
-  HEART = 'HEART',
-  AIRPLANE = 'AIRPLANE',
-  TOOTHBRUSH = 'TOOTHBRUSH',
-  SOCK = 'SOCK'
+  DIAMOND = 'DIAMOND',
+  MAGAZINE = 'MAGAZINE',
+  BELL = 'BELL',
+  FIREWORK = 'FIREWORK'
 }
 
 export interface ParticleState {
